@@ -71,7 +71,7 @@ router.put(authenticate, async (req, res, next) => {
 router.delete(authenticate, async (req, res, next) => {
   try {
     await prisma.department.delete({
-      where: { id: req.professor.id },
+      where: { id: req.department.id },
     });
     res.sendStatus(204);
   } catch (e) {
