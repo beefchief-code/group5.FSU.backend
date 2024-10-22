@@ -18,3 +18,11 @@ Content-Type: application/json
   "email": "user@123.com",
   "password": "pass123"
 }
+
+
+###get depts
+GET {{host}}/departments
+
+###get dept:id
+GET {{host}}/departments/3
+
