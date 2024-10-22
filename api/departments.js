@@ -5,7 +5,7 @@ const router = express.Router();
 module.exports = router;
 
 const prisma = require("../prisma");
-//const { authenticate } = require("./auth");
+const { authenticate } = require("./auth");
 
 //get all depts
 router.get("/", async (req, res, next) => {
@@ -25,6 +25,55 @@ router.get("/:id", async (req, res, next) => {
       where: { id: +id },
     });
     res.json(department);
+  } catch (e) {
+    next(e);
+  }
+});
+
+//AUTH push new dept
+router.post("/", authenticate, async (req, res, next) => {
+  const { name, description, image, email, phoneNumber, professorIds } =
+    req.body;
+  try {
+    const professors = professorIds.map((id) => ({ id }));
+    const department = await prisma.department.create({
+      data: {
+        name,
+        description,
+        image,
+        email,
+        phoneNumber,
+        professors: { connect: professors },
+      },
+    });
+    res.status(201).json(order);
+  } catch (e) {
+    next(e);
+  }
+});
+
+//AUTH modify dept
+router.put(authenticate, async (req, res, next) => {
+  try {
+    const { name, description, image, email, phoneNumber, professorIds } =
+      req.body;
+    const department = await prisma.department.update({
+      where: { id: req.department.id },
+      data: { name, description, image, email, phoneNumber, professorIds },
+    });
+    res.status(200).json(department);
+  } catch (e) {
+    next(e);
+  }
+});
+
+//AUTH delete dept
+router.delete(authenticate, async (req, res, next) => {
+  try {
+    await prisma.department.delete({
+      where: { id: req.professor.id },
+    });
+    res.sendStatus(204);
   } catch (e) {
     next(e);
   }
