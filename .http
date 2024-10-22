@@ -62,3 +62,20 @@ Content-Type: application/json
   "phoneNumber": "398-276-9087",
   "departmentId": 3
 }
+
+###delete professor
+DELETE {{host}}/professors/1
+Authorization: Bearer {{token}}
+
+###update professor
+PUT {{host}}/professors/3
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "mantua",
+  "bio": "Deprecator bellicus degero defetiscor patria.",
+  "profileImage": "https://picsum.photos/200/300",
+  "email": "mantua.Koelpin@yahoo.com",
+  "phoneNumber": "1-813-708-2618 x24140"
+}
