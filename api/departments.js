@@ -74,11 +74,7 @@ router.delete("/:id", authenticate, async (req, res, next) => {
   const { id } = req.params;
   try {
     await prisma.department.delete({
-<<<<<<< Updated upstream
-      where: { id: req.department.id },
-=======
       where: { id: +id },
->>>>>>> Stashed changes
     });
     res.sendStatus(204);
   } catch (e) {

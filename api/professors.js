@@ -56,10 +56,10 @@ router
   })
   .put(authenticate, async (req, res, next) => {
     try {
-      const { name, bio, profileImage, email, phoneNumber } = req.body;
+      const { name, bio, profileImage, email, phoneNumber, departmentId } = req.body;
       const professor = await prisma.professor.update({
         where: { id: req.professor.id },
-        data: { name, bio, profileImage, email, phoneNumber },
+        data: { name, bio, profileImage, email, phoneNumber, departmentId },
       });
       res.status(200).json(professor);
     } catch (e) {
