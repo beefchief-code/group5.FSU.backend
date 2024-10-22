@@ -3,6 +3,9 @@ const router = express.Router();
 
 const prisma = require("../prisma");
 
+// Authenticate middleware
+const { authenticate } = require("./auth");
+
 router
     .route("/")
     .get(async (req, res, next) => {
@@ -13,7 +16,7 @@ router
             next(e);
         }
     })
-    .post(async (req, res, next) => {
+    .post(authenticate, async (req, res, next) => {
         try {
             const { name, bio, profileImage, email, phoneNumber, departmentId } = req.body;
             const professor = await prisma.professor.create({
@@ -48,7 +51,7 @@ router
             next(e);
         }
     })
-    .put(async (req, res, next) => {
+    .put(authenticate, async (req, res, next) => {
         try {
             const { name, bio, profileImage, email, phoneNumber } = req.body;
             const professor = await prisma.professor.update({
@@ -60,7 +63,7 @@ router
             next(e);
         }
     })
-    .delete(async (req, res, next) => {
+    .delete(authenticate, async (req, res, next) => {
         try {
             await prisma.professor.delete({
                 where: { id: req.professor.id },
