@@ -15,6 +15,50 @@ POST {{host}}/login
 Content-Type: application/json
 
 {
-  "email": "user@123.com",
+  "email": "userrr@123.com",
   "password": "pass123"
+}
+
+
+###get depts
+GET {{host}}/departments
+
+###get dept:id
+GET {{host}}/departments/3
+
+###get profs
+GET {{host}}/professors
+
+###get dept:id
+GET {{host}}/professors/3
+
+###post new dept
+@token = {{login.response.body.token}}
+
+POST {{host}}/departments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "chemistry",
+  "description": "l;kjasdlkfjlskadjf",
+  "image": "https://picsum.photos/200/300",
+  "email": "dept@fsu.net",
+  "phoneNumber": "398-276-9087",
+  "professorIds": [2,7,14]
+}
+
+
+###post new professor
+POST {{host}}/professors
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "chemistry",
+  "bio": "l;kjasdlkfjlskadjf",
+  "profileImage": "https://picsum.photos/200/300",
+  "email": "dept@fsu.net",
+  "phoneNumber": "398-276-9087",
+  "departmentId": 3
 }
