@@ -10,7 +10,9 @@ router
   .route("/")
   .get(async (req, res, next) => {
     try {
-      const professors = await prisma.professor.findMany();
+      const professors = await prisma.professor.findMany({
+        include: { department: true },
+      });
       res.json(professors);
     } catch (e) {
       next(e);
@@ -33,6 +35,7 @@ router.param("id", async (req, res, next, id) => {
   try {
     const professor = await prisma.professor.findUniqueOrThrow({
       where: { id: +id },
+      include: { department: true },
     });
     if (professor) {
       req.professor = professor;
