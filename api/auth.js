@@ -71,19 +71,22 @@ router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
   try {
     if (!email || !password) {
-      next({ status: 400, error: "email and password are required." });
+      next({ status: 400, message: "email and password are required." });
     }
 
     if (email.trim() === "" || password.trim() === "") {
-      next({ status: 400, error: "email and password cannot be empty." });
+      next({ status: 400, message: "email and password cannot be empty." });
     }
 
     if (!emailRegex.test(email)) {
-      return next({ status: 400, error: "email format is invalid." });
+      return next({ status: 400, message: "email format is invalid." });
     }
 
     if (email.includes(" ") || password.includes(" ")) {
-      next({ status: 400, error: "email and password cannot contain spaces." });
+      next({
+        status: 400,
+        message: "email and password cannot contain spaces.",
+      });
     }
 
     const user = await prisma.user.login(email, password);
