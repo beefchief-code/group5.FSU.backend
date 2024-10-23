@@ -79,3 +79,16 @@ Content-Type: application/json
   "email": "mantua.Koelpin@yahoo.com",
   "phoneNumber": "1-813-708-2618 x24140"
 }
+
+###delete dept
+DELETE {{host}}/departments/6
+Authorization: Bearer {{token}}
+
+###update dept
+PUT {{host}}/departments/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Geography"
+}
