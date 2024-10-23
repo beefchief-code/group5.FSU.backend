@@ -29,7 +29,7 @@ GET {{host}}/departments/3
 ###get profs
 GET {{host}}/professors
 
-###get dept:id
+###get prof:id
 GET {{host}}/professors/3
 
 ###post new dept
@@ -63,19 +63,15 @@ Content-Type: application/json
   "departmentId": 3
 }
 
-###delete professor
-DELETE {{host}}/professors/1
+###delete dept
+DELETE {{host}}/departments/6
 Authorization: Bearer {{token}}
 
-###update professor
-PUT {{host}}/professors/3
+###update dept
+PUT {{host}}/departments/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "mantua",
-  "bio": "Deprecator bellicus degero defetiscor patria.",
-  "profileImage": "https://picsum.photos/200/300",
-  "email": "mantua.Koelpin@yahoo.com",
-  "phoneNumber": "1-813-708-2618 x24140"
+  "name": "Geography"
 }
