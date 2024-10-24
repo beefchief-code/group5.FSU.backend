@@ -1,1 +1,1 @@
-Backend repo for universtiy project for Bertha Wang, Rogelio Martinez, Colby Lang
+Backend repo for university project for Bertha Wang, Rogelio Martinez, Colby Lang
