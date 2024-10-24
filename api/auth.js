@@ -40,11 +40,14 @@ router.post("/register", async (req, res, next) => {
   const { email, password } = req.body;
   try {
     if (!email || !password) {
-      next({ status: 400, message: "email and password are required." });
+      return next({ status: 400, message: "email and password are required." });
     }
 
     if (email.trim() === "" || password.trim() === "") {
-      next({ status: 400, message: "email and password cannot be empty." });
+      return next({
+        status: 400,
+        message: "email and password cannot be empty.",
+      });
     }
 
     if (!emailRegex.test(email)) {
@@ -52,7 +55,7 @@ router.post("/register", async (req, res, next) => {
     }
 
     if (email.includes(" ") || password.includes(" ")) {
-      next({
+      return next({
         status: 400,
         message: "email and password cannot contain spaces.",
       });
@@ -71,11 +74,14 @@ router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
   try {
     if (!email || !password) {
-      next({ status: 400, message: "email and password are required." });
+      return next({ status: 400, message: "email and password are required." });
     }
 
     if (email.trim() === "" || password.trim() === "") {
-      next({ status: 400, message: "email and password cannot be empty." });
+      return next({
+        status: 400,
+        message: "email and password cannot be empty.",
+      });
     }
 
     if (!emailRegex.test(email)) {
@@ -83,7 +89,7 @@ router.post("/login", async (req, res, next) => {
     }
 
     if (email.includes(" ") || password.includes(" ")) {
-      next({
+      return next({
         status: 400,
         message: "email and password cannot contain spaces.",
       });
